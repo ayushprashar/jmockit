@@ -1,4 +1,5 @@
 import mockit.Expectations;
+import mockit.MockUp;
 import mockit.Mocked;
 import mockit.Verifications;
 import org.junit.Assert;
@@ -33,5 +34,16 @@ public class DepartmentTest {
                 person.getName();
             }
         };
+    }
+    
+    @Test
+    public void testMockUpGetDeptName(){
+        Department department = new Department();
+        new MockUp<Department>(){
+            public String getPersonName(){
+                return null;
+            }
+        };
+        Assert.assertNull(department.getPersonName());
     }
 }
